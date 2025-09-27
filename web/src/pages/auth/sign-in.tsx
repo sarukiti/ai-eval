@@ -322,9 +322,8 @@ export function SSOButtons({
             <>
               <Button
                 onClick={() => {
-                  const organization = window.prompt(
-                    "組織 ID を入力してください",
-                  );
+                  const organization =
+                    window.prompt("組織 ID を入力してください");
                   if (organization) {
                     capture("sign_in:button_click", { provider: "workos" });
                     void signIn("workos", undefined, {
@@ -339,9 +338,8 @@ export function SSOButtons({
               </Button>
               <Button
                 onClick={() => {
-                  const connection = window.prompt(
-                    "接続 ID を入力してください",
-                  );
+                  const connection =
+                    window.prompt("接続 ID を入力してください");
                   if (connection) {
                     capture("sign_in:button_click", { provider: "workos" });
                     void signIn("workos", undefined, {
@@ -580,8 +578,8 @@ export default function SignIn({
 
         {env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== undefined && (
           <div className="-mb-4 mt-4 rounded-lg bg-card p-3 text-center text-sm sm:mx-auto sm:w-full sm:max-w-[480px] sm:rounded-lg sm:px-6">
-            サインインに問題がある場合は、このページを強制的に再読み込み
-            （CMD + SHIFT + R）するか、ブラウザのキャッシュを削除してください。
+            サインインに問題がある場合は、このページを強制的に再読み込み （CMD +
+            SHIFT + R）するか、ブラウザのキャッシュを削除してください。
             現在、解決に向けて対応中です。{" "}
             <a
               href="mailto:support@langfuse.com"
