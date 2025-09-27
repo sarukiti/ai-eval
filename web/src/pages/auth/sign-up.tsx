@@ -83,7 +83,7 @@ export default function SignIn({
         turnstileToken,
       });
     } catch (err) {
-      setFormError("An error occurred. Please try again.");
+      setFormError("エラーが発生しました。もう一度お試しください。");
 
       // Refresh turnstile as the token can only be used once
       if (env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && turnstileToken) {
@@ -96,10 +96,10 @@ export default function SignIn({
   return (
     <>
       <Head>
-        <title>Sign up | Langfuse</title>
+        <title>サインアップ | Langfuse</title>
         <meta
           name="description"
-          content="Create an account, no credit card required."
+          content="クレジットカード不要ですぐにアカウントを作成できます。"
           key="desc"
         />
       </Head>
@@ -107,12 +107,12 @@ export default function SignIn({
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <LangfuseIcon className="mx-auto" />
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-primary">
-            Create new account
+            新規アカウントを作成
           </h2>
         </div>
         {env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== undefined ? (
           <div className="text-center sm:mx-auto sm:w-full sm:max-w-[480px]">
-            No credit card required.
+            クレジットカードは不要です。
           </div>
         ) : null}
 
@@ -130,9 +130,9 @@ export default function SignIn({
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>名前</FormLabel>
                     <FormControl>
-                      <Input placeholder="Jane Doe" {...field} />
+                      <Input placeholder="山田花子" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -143,9 +143,9 @@ export default function SignIn({
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>メールアドレス</FormLabel>
                     <FormControl>
-                      <Input placeholder="jsdoe@example.com" {...field} />
+                      <Input placeholder="taro.yamada@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -156,7 +156,7 @@ export default function SignIn({
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>パスワード</FormLabel>
                     <FormControl>
                       <PasswordInput {...field} />
                     </FormControl>
@@ -174,7 +174,7 @@ export default function SignIn({
                 }
                 data-testid="submit-email-password-sign-up-form"
               >
-                Sign up
+                サインアップ
               </Button>
               {formError ? (
                 <div className="text-center text-sm font-medium text-destructive">
@@ -203,12 +203,12 @@ export default function SignIn({
             )
           }
           <p className="mt-10 text-center text-sm text-muted-foreground">
-            Already have an account?{" "}
+            すでにアカウントをお持ちの方は{" "}
             <Link
               href="/auth/sign-in"
               className="font-semibold leading-6 text-primary-accent hover:text-hover-primary-accent"
             >
-              Sign in
+              サインイン
             </Link>
           </p>
         </div>
