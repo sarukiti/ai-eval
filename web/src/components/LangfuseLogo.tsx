@@ -1,6 +1,5 @@
 import { cn } from "@/src/utils/tailwind";
 import Link from "next/link";
-import { VersionLabel } from "./VersionLabel";
 import { env } from "@/src/env.mjs";
 import { useUiCustomization } from "@/src/ee/features/ui-customization/useUiCustomization";
 import { PlusIcon } from "lucide-react";
@@ -74,7 +73,6 @@ const LangfuseLogotypeOrCustomized = ({ size }: { size: "sm" | "xl" }) => {
 export const LangfuseLogo = ({
   className,
   size = "sm",
-  version = false,
 }: {
   size?: "sm" | "xl";
   className?: string;
@@ -92,9 +90,6 @@ export const LangfuseLogo = ({
         <Link href="/" className="flex items-center">
           <LangfuseLogotypeOrCustomized size={size} />
         </Link>
-        {version && (
-          <VersionLabel className="ml-2 group-data-[collapsible=icon]:hidden" />
-        )}
       </div>
     </div>
   );
