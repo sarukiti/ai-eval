@@ -33,10 +33,10 @@ export default function Traces() {
   return (
     <Page
       headerProps={{
-        title: "Tracing",
+        title: "トレース",
         help: {
           description:
-            "A trace represents a single function/api invocation. Traces contain observations. See docs to learn more.",
+            "トレースは単一の関数／API 呼び出しを表し、関連する観測データを含みます。詳しくはドキュメントをご覧ください。",
           href: "https://langfuse.com/docs/observability/data-model",
         },
         tabsProps: {
