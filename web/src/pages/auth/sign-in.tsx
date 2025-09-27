@@ -42,7 +42,7 @@ import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePos
 const credentialAuthForm = z.object({
   email: z.string().email(),
   password: z.string().min(8, {
-    message: "Password must be at least 8 characters long",
+    message: "パスワードは8文字以上で入力してください",
   }),
 });
 
@@ -173,6 +173,13 @@ export function SSOButtons({
       });
   };
 
+  const actionLabel =
+    action === "sign in"
+      ? "サインイン"
+      : action === "sign up"
+        ? "サインアップ"
+        : action;
+
   return (
     // any authprovider from props is enabled
     Object.entries(authProviders).some(
@@ -180,7 +187,9 @@ export function SSOButtons({
     ) ? (
       <div>
         {authProviders.credentials && (
-          <Divider className="text-muted-foreground">or {action} with</Divider>
+          <Divider className="text-muted-foreground">
+            別の方法で{actionLabel}する
+          </Divider>
         )}
         <div className="flex flex-row flex-wrap items-center justify-center gap-4">
           {authProviders.google && (
@@ -314,7 +323,7 @@ export function SSOButtons({
               <Button
                 onClick={() => {
                   const organization = window.prompt(
-                    "Please enter your organization ID",
+                    "組織 ID を入力してください",
                   );
                   if (organization) {
                     capture("sign_in:button_click", { provider: "workos" });
@@ -326,12 +335,12 @@ export function SSOButtons({
                 variant="secondary"
               >
                 <Code className="mr-3" size={18} />
-                WorkOS (organization)
+                WorkOS（組織）
               </Button>
               <Button
                 onClick={() => {
                   const connection = window.prompt(
-                    "Please enter your connection ID",
+                    "接続 ID を入力してください",
                   );
                   if (connection) {
                     capture("sign_in:button_click", { provider: "workos" });
@@ -343,7 +352,7 @@ export function SSOButtons({
                 variant="secondary"
               >
                 <Code className="mr-3" size={18} />
-                WorkOS (connection)
+                WorkOS（接続）
               </Button>
             </>
           )}
@@ -394,7 +403,7 @@ const signInErrors = [
   {
     code: "OAuthAccountNotLinked",
     description:
-      "Please sign in with the same provider (e.g. Google, GitHub, Azure AD, etc.) that you used to create this account.",
+      "アカウント作成時と同じプロバイダー（例: Google、GitHub、Azure AD など）でサインインしてください。",
   },
 ];
 
@@ -460,7 +469,7 @@ export default function SignIn({
         turnstileToken,
       });
       if (result === undefined) {
-        setCredentialsFormError("An unexpected error occurred.");
+        setCredentialsFormError("予期しないエラーが発生しました。");
         captureException(new Error("Sign in result is undefined"));
       } else if (!result.ok) {
         if (!result.error) {
@@ -471,13 +480,13 @@ export default function SignIn({
           );
         }
         setCredentialsFormError(
-          result?.error ?? "An unexpected error occurred.",
+          result?.error ?? "予期しないエラーが発生しました。",
         );
       }
     } catch (error) {
       captureException(error);
       console.error(error);
-      setCredentialsFormError("An unexpected error occurred.");
+      setCredentialsFormError("予期しないエラーが発生しました。");
     } finally {
       // Refresh turnstile as the token can only be used once
       if (env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && turnstileToken) {
@@ -505,7 +514,7 @@ export default function SignIn({
     const email = emailSchema.safeParse(credentialsForm.getValues("email"));
     if (!email.success) {
       credentialsForm.setError("email", {
-        message: "Invalid email address",
+        message: "メールアドレスの形式が正しくありません",
       });
       setContinueLoading(false);
       return;
@@ -549,7 +558,7 @@ export default function SignIn({
     } catch (error) {
       console.error(error);
       setCredentialsFormError(
-        "Unable to check SSO configuration. Please try again.",
+        "SSO の設定確認に失敗しました。再度お試しください。",
       );
     } finally {
       setContinueLoading(false);
@@ -559,26 +568,26 @@ export default function SignIn({
   return (
     <>
       <Head>
-        <title>Sign in | Langfuse</title>
+        <title>サインイン | Langfuse</title>
       </Head>
       <div className="flex flex-1 flex-col py-6 sm:min-h-full sm:justify-center sm:px-6 sm:py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <LangfuseIcon className="mx-auto" />
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-primary">
-            Sign in to your account
+            アカウントにサインイン
           </h2>
         </div>
 
         {env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== undefined && (
           <div className="-mb-4 mt-4 rounded-lg bg-card p-3 text-center text-sm sm:mx-auto sm:w-full sm:max-w-[480px] sm:rounded-lg sm:px-6">
-            If you are experiencing issues signing in, please force refresh this
-            page (CMD + SHIFT + R) or clear your browser cache. We are working
-            on a solution.{" "}
+            サインインに問題がある場合は、このページを強制的に再読み込み
+            （CMD + SHIFT + R）するか、ブラウザのキャッシュを削除してください。
+            現在、解決に向けて対応中です。{" "}
             <a
               href="mailto:support@langfuse.com"
               className="cursor-pointer whitespace-nowrap text-xs font-medium text-primary-accent hover:text-hover-primary-accent"
             >
-              (contact us)
+              （お問い合わせはこちら）
             </a>
           </div>
         )}
@@ -608,9 +617,12 @@ export default function SignIn({
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>メールアドレス</FormLabel>
                         <FormControl>
-                          <Input placeholder="jsdoe@example.com" {...field} />
+                          <Input
+                            placeholder="taro.yamada@example.com"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -625,14 +637,14 @@ export default function SignIn({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            Password{" "}
+                            パスワード{" "}
                             <Link
                               href="/auth/reset-password"
                               className="ml-1 text-xs text-primary-accent hover:text-hover-primary-accent"
                               tabIndex={-1}
-                              title="What is this?"
+                              title="詳しくはこちら"
                             >
-                              (forgot password?)
+                              （パスワードをお忘れですか？）
                             </Link>
                           </FormLabel>
                           <FormControl>
@@ -663,7 +675,7 @@ export default function SignIn({
                     }
                     data-testid="submit-email-password-sign-in-form"
                   >
-                    {showPasswordStep ? "Sign in" : "Continue"}
+                    {showPasswordStep ? "サインイン" : "続行"}
                   </Button>
                 </form>
               </Form>
@@ -672,9 +684,9 @@ export default function SignIn({
               <div className="text-center text-sm font-medium text-destructive">
                 {credentialsFormError}
                 <br />
-                Contact support if this error is unexpected.{" "}
+                想定外のエラーの場合はサポートまでご連絡ください。{" "}
                 {env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== undefined &&
-                  "Make sure you are using the correct cloud data region."}
+                  "クラウドデータのリージョンが正しいかご確認ください。"}
               </div>
             ) : null}
             <SSOButtons authProviders={authProviders} />
@@ -702,17 +714,17 @@ export default function SignIn({
           env.NEXT_PUBLIC_SIGN_UP_DISABLED !== "true" &&
           authProviders.credentials ? (
             <p className="mt-10 text-center text-sm text-muted-foreground">
-              No account yet?{" "}
+              まだアカウントをお持ちでない場合は{" "}
               <Link
                 href="/auth/sign-up"
                 className="font-semibold leading-6 text-primary-accent hover:text-hover-primary-accent"
               >
-                Sign up
+                アカウントを作成
               </Link>
             </p>
           ) : null}
         </div>
-        <CloudPrivacyNotice action="signing in" />
+        <CloudPrivacyNotice action="サインイン" />
       </div>
     </>
   );

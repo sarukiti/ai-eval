@@ -3,31 +3,31 @@ import { env } from "@/src/env.mjs";
 export const CloudPrivacyNotice = ({ action }: { action: string }) =>
   env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== undefined ? (
     <div className="mx-auto mt-10 max-w-lg text-center text-xs text-muted-foreground">
-      By {action} you are agreeing to our{" "}
+      {action}すると、Langfuse の{" "}
       <a
         href="https://langfuse.com/terms"
         target="_blank"
         rel="noopener noreferrer"
         className="italic"
       >
-        Terms and Conditions
+        利用規約
       </a>
-      ,{" "}
+      、{" "}
       <a
         href="https://langfuse.com/privacy"
         rel="noopener noreferrer"
         className="italic"
       >
-        Privacy Policy
+        プライバシーポリシー
       </a>
-      , and{" "}
+      、および{" "}
       <a
         href="https://langfuse.com/cookie-policy"
         rel="noopener noreferrer"
         className="italic"
       >
-        Cookie Policy
+        クッキーポリシー
       </a>
-      . You also confirm that the entered data is accurate.
+      に同意したものとみなされます。入力した内容が正確であることも確認してください。
     </div>
   ) : null;

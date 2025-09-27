@@ -212,7 +212,7 @@ export default function SignIn({
             </Link>
           </p>
         </div>
-        <CloudPrivacyNotice action="creating an account" />
+        <CloudPrivacyNotice action="アカウントを作成" />
       </div>
     </>
   );
