@@ -56,7 +56,9 @@ const OrganizationProjectTiles = ({
             {!project.deletedAt ? (
               <CardFooter className="gap-2">
                 <Button asChild variant="secondary">
-                  <Link href={`/project/${project.id}`}>Go to project</Link>
+                  <Link href={`/project/${project.id}`}>
+                    プロジェクトを開く
+                  </Link>
                 </Button>
                 <Button asChild variant="ghost">
                   <Link href={`/project/${project.id}/settings`}>
@@ -66,7 +68,7 @@ const OrganizationProjectTiles = ({
               </CardFooter>
             ) : (
               <CardContent>
-                <CardDescription>Project is being deleted</CardDescription>
+                <CardDescription>プロジェクトを削除しています</CardDescription>
               </CardContent>
             )}
           </Card>
@@ -79,16 +81,17 @@ const DemoOrganizationTile = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Try Langfuse Demo</CardTitle>
+        <CardTitle>Langfuse デモを試す</CardTitle>
       </CardHeader>
       <CardContent>
-        We have built a Q&A chatbot that answers questions based on the Langfuse
-        Docs. Interact with it to see traces in Langfuse.
+        Langfuse ドキュメントをもとに回答する Q&A
+        チャットボットをご用意しました。実際に操作して Langfuse
+        上のトレースを体験してください。
       </CardContent>
       <CardFooter>
         <Button asChild variant="secondary">
           <Link href={`/project/${env.NEXT_PUBLIC_DEMO_PROJECT_ID}/traces`}>
-            View Demo Project
+            デモプロジェクトを表示
           </Link>
         </Button>
       </CardFooter>
@@ -130,13 +133,13 @@ const OrganizationActionButtons = ({
         <Button asChild variant={primaryButtonVariant}>
           <Link href={createProjectRoute(orgId)}>
             <PlusIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-            New project
+            新しいプロジェクト
           </Link>
         </Button>
       ) : (
         <Button disabled variant={primaryButtonVariant}>
           <LockIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-          New project
+          新しいプロジェクト
         </Button>
       )}
     </>
@@ -165,7 +168,7 @@ const SingleOrganizationPage = ({
     return (
       <ContainerPage
         headerProps={{
-          title: "Demo Organization",
+          title: "デモ組織",
         }}
       >
         <DemoOrganizationTile />
@@ -176,7 +179,7 @@ const SingleOrganizationPage = ({
   return (
     <ContainerPage
       headerProps={{
-        title: org?.name ?? "Organization",
+        title: org?.name ?? "組織",
         actionButtonsRight: <OrganizationActionButtons orgId={orgId} />,
       }}
     >
@@ -216,7 +219,7 @@ const SingleOrganizationProjectOverviewTile = ({
       <Header
         title={org.name}
         className="truncate"
-        status={orgId === env.NEXT_PUBLIC_DEMO_ORG_ID ? "Demo Org" : undefined}
+        status={orgId === env.NEXT_PUBLIC_DEMO_ORG_ID ? "デモ組織" : undefined}
         label={
           isCloudPlan(org.plan)
             ? {
@@ -246,7 +249,7 @@ export const OrganizationProjectOverview = () => {
   const [{ search }, setQueryParams] = useQueryParams({ search: StringParam });
 
   if (organizations === undefined) {
-    return "loading...";
+    return "読み込み中...";
   }
 
   const showOnboarding =
@@ -268,15 +271,15 @@ export const OrganizationProjectOverview = () => {
   return (
     <ContainerPage
       headerProps={{
-        title: "Organizations",
+        title: "組織",
         help: {
           description:
-            "Organizations help you manage access to projects. Each organization can have multiple projects and team members with different roles.",
+            "組織を利用すると、プロジェクトへのアクセス管理をまとめて行えます。各組織には複数のプロジェクトと役割の異なるメンバーを設定できます。",
           href: "https://langfuse.com/docs/rbac",
         },
         breadcrumb: [
           {
-            name: "Organizations",
+            name: "組織",
             href: "/",
           },
         ],
@@ -284,14 +287,14 @@ export const OrganizationProjectOverview = () => {
           <>
             <Input
               className="mr-1 w-36 lg:w-56"
-              placeholder="Search projects"
+              placeholder="プロジェクトを検索"
               onChange={(e) => setQueryParams({ search: e.target.value })}
             />
             {canCreateOrg && (
               <Button data-testid="create-organization-btn" asChild>
                 <Link href={createOrganizationRoute}>
                   <PlusIcon className="mr-1.5 h-4 w-4" aria-hidden="true" />
-                  New Organization
+                  新しい組織
                 </Link>
               </Button>
             )}
@@ -331,14 +334,14 @@ const Onboarding = () => {
     <Card className="mt-5">
       <CardHeader>
         <CardTitle data-testid="create-new-project-title">
-          Get Started
+          はじめましょう
         </CardTitle>
       </CardHeader>
       <CardContent>
         <CardDescription>
           {canCreateOrgs
-            ? "Create an organization to get started. Alternatively, ask your organization admin to invite you."
-            : "You need to get invited to an organization to get started with Langfuse."}
+            ? "まずは組織を作成してください。すでに組織がある場合は管理者に招待を依頼しましょう。"
+            : "Langfuse を利用するには、既存の組織から招待を受ける必要があります。"}
         </CardDescription>
       </CardContent>
       <CardFooter className="flex gap-4">
@@ -346,20 +349,20 @@ const Onboarding = () => {
           <Button data-testid="create-project-btn" asChild>
             <Link href={createOrganizationRoute}>
               <PlusIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-              New Organization
+              新しい組織
             </Link>
           </Button>
         )}
         <Button variant="secondary" asChild>
           <Link href="https://langfuse.com/docs" target="_blank">
             <BookOpen className="mr-2 h-4 w-4" aria-hidden="true" />
-            Docs
+            ドキュメント
           </Link>
         </Button>
         <Button variant="secondary" asChild>
           <Link href="https://langfuse.com/docs/ask-ai" target="_blank">
             <MessageSquareText className="mr-2 h-4 w-4" aria-hidden="true" />
-            Ask AI
+            AI に質問
           </Link>
         </Button>
       </CardFooter>
