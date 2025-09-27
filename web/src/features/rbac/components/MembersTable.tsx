@@ -134,7 +134,7 @@ export function MembersTable({
     {
       accessorKey: "user",
       id: "user",
-      header: "Name",
+      header: "名前",
       cell: ({ row }) => {
         const { name, image } = row.getValue("user") as MembersTableRow["user"];
         return (
@@ -142,7 +142,7 @@ export function MembersTable({
             <Avatar className="h-7 w-7">
               <AvatarImage
                 src={image ?? undefined}
-                alt={name ?? "User Avatar"}
+                alt={name ?? "ユーザーアイコン"}
               />
               <AvatarFallback>
                 {name
@@ -162,15 +162,15 @@ export function MembersTable({
     {
       accessorKey: "email",
       id: "email",
-      header: "Email",
+      header: "メールアドレス",
     },
     {
       accessorKey: "orgRole",
       id: "orgRole",
-      header: "Organization Role",
+      header: "組織ロール",
       headerTooltip: {
         description:
-          "The org-role is the default role for this user in this organization and applies to the organization and all its projects.",
+          "組織ロールはこの組織でのデフォルト権限で、所属するすべてのプロジェクトに適用されます。",
         href: "https://langfuse.com/docs/administration/rbac",
       },
       cell: ({ row }) => {
@@ -205,14 +205,14 @@ export function MembersTable({
                     side="right"
                   >
                     <p className="text-xs">
-                      The organization-level role can to be edited in the{" "}
+                      組織レベルのロールは
                       <Link
                         href={`/organization/${orgId}/settings/members`}
                         className="underline"
                       >
-                        organization settings
+                        組織設定
                       </Link>
-                      .
+                      から編集できます。
                     </p>
                   </HoverCardContent>
                 </HoverCardPortal>
@@ -229,10 +229,10 @@ export function MembersTable({
           {
             accessorKey: "projectRole",
             id: "projectRole",
-            header: "Project Role",
+            header: "プロジェクトロール",
             headerTooltip: {
               description:
-                "The role for this user in this specific project. This role overrides the default project role.",
+                "このユーザーに対して該当プロジェクトでのみ適用されるロールです。デフォルトのプロジェクトロールより優先されます。",
               href: "https://langfuse.com/docs/administration/rbac",
             },
             cell: ({
@@ -247,7 +247,7 @@ export function MembersTable({
                 "meta",
               ) as MembersTableRow["meta"];
 
-              if (!projectRolesEntitlement) return "N/A on plan";
+              if (!projectRolesEntitlement) return "ご利用プランの対象外";
 
               return (
                 <ProjectRoleDropdown
@@ -268,7 +268,7 @@ export function MembersTable({
     {
       accessorKey: "createdAt",
       id: "createdAt",
-      header: "Member Since",
+      header: "参加日",
       enableHiding: true,
       defaultHidden: true,
       cell: ({ row }) => {
@@ -279,7 +279,7 @@ export function MembersTable({
     {
       accessorKey: "meta",
       id: "meta",
-      header: "Actions",
+      header: "操作",
       enableHiding: false,
       cell: ({ row }) => {
         const { orgMembershipId, userId } = row.getValue(
@@ -293,8 +293,8 @@ export function MembersTable({
                 if (
                   confirm(
                     userId === session.data?.user?.id
-                      ? "Are you sure you want to leave the organization?"
-                      : "Are you sure you want to remove this member from the organization?",
+                      ? "この組織から退出しますか？"
+                      : "このメンバーを組織から削除しますか？",
                   )
                 ) {
                   mutDeleteMember.mutate({ orgId, orgMembershipId });
@@ -342,9 +342,9 @@ export function MembersTable({
   if (project ? !hasProjectViewAccess : !hasOrgViewAccess) {
     return (
       <Alert>
-        <AlertTitle>Access Denied</AlertTitle>
+        <AlertTitle>アクセスが拒否されました</AlertTitle>
         <AlertDescription>
-          You do not have permission to view members of this organization.
+          この組織のメンバーを表示する権限がありません。
         </AlertDescription>
       </Alert>
     );

@@ -33,15 +33,15 @@ export const QuickstartExamples = (p: {
   if (uiCustomization?.documentationHref) {
     return (
       <p className="mb-2">
-        See your{" "}
+        Langfuse の設定手順は、社内ドキュメントを参照してください:{" "}
         <Link
           href={uiCustomization.documentationHref}
           target="_blank"
           className="underline"
         >
-          internal documentation
-        </Link>{" "}
-        for details on how to set up Langfuse in your organization.
+          社内ドキュメント
+        </Link>
+        。
       </p>
     );
   }
@@ -72,25 +72,25 @@ export const QuickstartExamples = (p: {
             content={`from langfuse import Langfuse\n\nlangfuse = Langfuse(\n  secret_key="${secretKey}",\n  public_key="${publicKey}",\n  host="${host}"\n)`}
           />
           <p className="mt-3 text-xs text-muted-foreground">
-            See{" "}
+            詳細な手順やサンプルは{" "}
             <a
               href="https://langfuse.com/docs/observability/get-started"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Quickstart
+              クイックスタート
             </a>{" "}
-            and{" "}
+            と{" "}
             <a
               href="https://langfuse.com/docs/sdk/python"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Python docs
-            </a>{" "}
-            for more details and an end-to-end example.
+              Python ドキュメント
+            </a>
+            を参照してください。
           </p>
         </TabsContent>
         <TabsContent value="js">
@@ -99,32 +99,32 @@ export const QuickstartExamples = (p: {
             content={`import { LangfuseClient } from "@langfuse/client";\n\nconst langfuse = new LangfuseClient({\n  secretKey: "${secretKey}",\n  publicKey: "${publicKey}",\n  baseUrl: "${host}"\n});`}
           />
           <p className="mt-3 text-xs text-muted-foreground">
-            See{" "}
+            詳細は{" "}
             <a
               href="https://langfuse.com/docs/observability/get-started"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Quickstart
+              クイックスタート
             </a>{" "}
-            and{" "}
+            と{" "}
             <a
               href="https://langfuse.com/docs/sdk/typescript"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              JS/TS docs
-            </a>{" "}
-            for more details and an end-to-end example.
+              JS/TS ドキュメント
+            </a>
+            をご覧ください。
           </p>
         </TabsContent>
         <TabsContent value="openai">
           <p className="mt-2 text-xs text-muted-foreground">
-            The integration is a drop-in replacement for the OpenAI Python SDK.
-            By changing the import, Langfuse will capture all LLM calls and send
-            them to Langfuse asynchronously.
+            この統合は OpenAI Python SDK
+            の置き換えとして利用でき、インポートを切り替えるだけで Langfuse が
+            LLM 呼び出しを非同期で収集します。
           </p>
           <CodeView content="pip install langfuse" className="my-2" />
           <CodeView
@@ -137,22 +137,22 @@ export const QuickstartExamples = (p: {
             className="my-2"
           />
           <p className="mt-2 text-xs text-muted-foreground">
-            Use the OpenAI SDK as you would normally. See the{" "}
+            OpenAI SDK はこれまでどおり使用できます。詳細は{" "}
             <a
               href="https://langfuse.com/integrations/model-providers/openai-py"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              OpenAI Integration docs
-            </a>{" "}
-            for more details and an end-to-end example.
+              OpenAI 連携ドキュメント
+            </a>
+            を参照してください。
           </p>
         </TabsContent>
         <TabsContent value="langchain">
           <p className="mt-2 text-xs text-muted-foreground">
-            The integration uses the Langchain callback system to automatically
-            capture detailed traces of your Langchain executions.
+            Langchain
+            のコールバック機構を利用し、実行内容を自動的に詳細トレースとして記録します。
           </p>
           <CodeView content="pip install langfuse" className="my-2" />
           <CodeView
@@ -160,22 +160,22 @@ export const QuickstartExamples = (p: {
             className="my-2"
           />
           <p className="mt-2 text-xs text-muted-foreground">
-            See the{" "}
+            詳しくは{" "}
             <a
               href="https://langfuse.com/integrations/frameworks/langchain"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Langchain Integration docs
-            </a>{" "}
-            for more details and an end-to-end example.
+              Langchain 連携ドキュメント
+            </a>
+            を参照してください。
           </p>
         </TabsContent>
         <TabsContent value="langchain-js">
           <p className="mt-2 text-xs text-muted-foreground">
-            The integration uses the Langchain callback system to automatically
-            capture detailed traces of your Langchain executions.
+            Langchain のコールバック機構を利用して、Langchain
+            の処理を自動記録します。
           </p>
           <CodeView
             content="npm install @langfuse/langchain"
@@ -183,71 +183,71 @@ export const QuickstartExamples = (p: {
           />
           <CodeView content={LANGCHAIN_JS_CODE()} className="my-2" />
           <p className="mt-2 text-xs text-muted-foreground">
-            See the{" "}
+            詳細は{" "}
             <a
               href="https://langfuse.com/integrations/frameworks/langchain"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Langchain Integration docs
-            </a>{" "}
-            for more details and an end-to-end example.
+              Langchain 連携ドキュメント
+            </a>
+            をご覧ください。
           </p>
         </TabsContent>
         <TabsContent value="other">
           <p className="mt-2 text-xs text-muted-foreground">
-            Use the{" "}
+            Langfuse との連携は{" "}
             <a
               href="https://api.reference.langfuse.com/"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              API
-            </a>{" "}
-            or one of the{" "}
+              API リファレンス
+            </a>
+            や{" "}
             <a
               href="https://langfuse.com/docs/integrations"
               className="underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              native integrations
-            </a>{" "}
-            (e.g. LiteLLM, Flowise, and Langflow) to integrate with Langfuse.
+              各種ネイティブ連携
+            </a>
+            （例: LiteLLM、Flowise、Langflow）を利用することもできます。
           </p>
         </TabsContent>
       </Tabs>
       <span className="mt-4 text-xs text-muted-foreground">
-        Do you have questions or issues? Check out this{" "}
+        ご不明点や問題がある場合は、まずは{" "}
         <a
           href="https://langfuse.com/faq/all/missing-traces"
           className="underline"
           target="_blank"
           rel="noopener noreferrer"
         >
-          FAQ post
-        </a>{" "}
-        for common resolutions,{" "}
+          FAQ
+        </a>
+        をご確認いただき、解決しない場合は{" "}
         <Link
           className="underline"
           href="https://langfuse.com/docs/ask-ai"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Ask AI
-        </Link>{" "}
-        or{" "}
+          AI に質問
+        </Link>
+        や{" "}
         <Link
           className="underline"
           href="https://langfuse.com/support"
           target="_blank"
           rel="noopener noreferrer"
         >
-          get support
+          サポートへのお問い合わせ
         </Link>
-        .
+        をご利用ください。
       </span>
     </div>
   );

@@ -107,7 +107,7 @@ export const NewOrganizationForm = ({
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Organization name</FormLabel>
+              <FormLabel>組織名</FormLabel>
               <FormControl>
                 <Input
                   placeholder="my-org"
@@ -126,23 +126,23 @@ export const NewOrganizationForm = ({
               name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Type</FormLabel>
+                  <FormLabel>組織のタイプ</FormLabel>
                   <FormDescription>
-                    What would best describe your organization?
+                    組織の特徴に最も近いものを選択してください。
                   </FormDescription>
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger ref={field.ref}>
-                        <SelectValue placeholder="Please choose" />
+                        <SelectValue placeholder="選択してください" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="Personal">Personal</SelectItem>
-                      <SelectItem value="Educational">Educational</SelectItem>
-                      <SelectItem value="Company">Company</SelectItem>
-                      <SelectItem value="Startup">Startup</SelectItem>
-                      <SelectItem value="Agency">Agency</SelectItem>
-                      <SelectItem value="N/A">N/A</SelectItem>
+                      <SelectItem value="Personal">個人</SelectItem>
+                      <SelectItem value="Educational">教育機関</SelectItem>
+                      <SelectItem value="Company">企業</SelectItem>
+                      <SelectItem value="Startup">スタートアップ</SelectItem>
+                      <SelectItem value="Agency">代理店</SelectItem>
+                      <SelectItem value="N/A">該当なし</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -155,23 +155,29 @@ export const NewOrganizationForm = ({
                 name="size"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{watchedType} size</FormLabel>
+                    <FormLabel>
+                      {watchedType === "Company"
+                        ? "企業の規模"
+                        : "代理店の規模"}
+                    </FormLabel>
                     <FormDescription>
-                      How many people are in your {watchedType}?
+                      {watchedType === "Company"
+                        ? "企業の従業員数を選択してください。"
+                        : "代理店の規模を選択してください。"}
                     </FormDescription>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger ref={field.ref}>
-                          <SelectValue placeholder="Please choose" />
+                          <SelectValue placeholder="選択してください" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="1-10">1-10</SelectItem>
-                        <SelectItem value="10-49">10-49</SelectItem>
-                        <SelectItem value="50-99">50-99</SelectItem>
-                        <SelectItem value="100-299">100-299</SelectItem>
+                        <SelectItem value="1-10">1-10 人</SelectItem>
+                        <SelectItem value="10-49">10-49 人</SelectItem>
+                        <SelectItem value="50-99">50-99 人</SelectItem>
+                        <SelectItem value="100-299">100-299 人</SelectItem>
                         <SelectItem value="More than 300">
-                          More than 300
+                          300 人以上
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -183,7 +189,7 @@ export const NewOrganizationForm = ({
           </>
         )}
         <Button type="submit" loading={createOrgMutation.isPending}>
-          Create
+          作成する
         </Button>
       </form>
     </Form>

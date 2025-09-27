@@ -34,7 +34,7 @@ export const RoleSelectItem = ({
         <SelectItem value={role} className="max-w-56">
           <span>
             {formatRole(role)}
-            {isProjectNoneRole ? " (keep default role)" : ""}
+            {isProjectNoneRole ? "（既定のロールを維持）" : ""}
           </span>
         </SelectItem>
       </HoverCardTrigger>
@@ -46,15 +46,14 @@ export const RoleSelectItem = ({
             <div className="text-xs">{orgNoneRoleComment}</div>
           ) : (
             <>
-              <div className="font-bold">Role: {formatRole(role)}</div>
-              <p className="mt-2 text-xs font-semibold">Organization Scopes</p>
+              <div className="font-bold">ロール: {formatRole(role)}</div>
+              <p className="mt-2 text-xs font-semibold">組織スコープ</p>
               <ul className="list-inside list-disc text-xs">{orgScopes}</ul>
-              <p className="mt-2 text-xs font-semibold">Project Scopes</p>
+              <p className="mt-2 text-xs font-semibold">プロジェクトスコープ</p>
               <ul className="list-inside list-disc text-xs">{projectScopes}</ul>
               <p className="mt-2 border-t pt-2 text-xs">
-                Note:{" "}
-                <span className="text-muted-foreground">Muted scopes</span> are
-                inherited from lower role.
+                注意: <span className="text-muted-foreground">灰色の権限</span>
+                は 下位ロールから継承されたものです。
               </p>
             </>
           )}
@@ -111,7 +110,7 @@ const reduceScopesToListItems = (
       })}
     </>
   ) : (
-    <li>None</li>
+    <li>なし</li>
   );
 };
 

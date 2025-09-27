@@ -75,15 +75,15 @@ export function SetupPage() {
   return (
     <ContainerPage
       headerProps={{
-        title: "Setup",
+        title: "セットアップ",
         help: {
           description:
-            "Create a new organization. This will be used to manage your projects and teams.",
+            "新しい組織を作成し、プロジェクトやチームをまとめて管理しましょう。",
         },
         ...(stepInt === 1 && {
           breadcrumb: [
             {
-              name: "Organizations",
+              name: "組織",
               href: "/",
             },
           ],
@@ -100,7 +100,7 @@ export function SetupPage() {
                   : "font-semibold text-foreground",
               )}
             >
-              1. Create Organization
+              1. 組織を作成
               {stepInt > 1 && <Check className="ml-1 inline-block h-3 w-3" />}
             </BreadcrumbPage>
           </BreadcrumbItem>
@@ -113,7 +113,7 @@ export function SetupPage() {
                   : "font-semibold text-foreground",
               )}
             >
-              2. Invite Members
+              2. メンバーを招待
               {stepInt > 2 && <Check className="ml-1 inline-block h-3 w-3" />}
             </BreadcrumbPage>
           </BreadcrumbItem>
@@ -126,7 +126,7 @@ export function SetupPage() {
                   : "font-semibold text-foreground",
               )}
             >
-              3. Create Project
+              3. プロジェクトを作成
               {stepInt > 3 && <Check className="ml-1 inline-block h-3 w-3" />}
             </BreadcrumbPage>
           </BreadcrumbItem>
@@ -139,7 +139,7 @@ export function SetupPage() {
                   : "font-semibold text-foreground",
               )}
             >
-              4. Setup Tracing
+              4. トレースを設定
               {stepInt === 4 && <Check className="ml-1 inline-block h-3 w-3" />}
             </BreadcrumbPage>
           </BreadcrumbItem>
@@ -150,9 +150,9 @@ export function SetupPage() {
           // 1. Create Org
           stepInt === 1 && (
             <div>
-              <Header title="New Organization" />
+              <Header title="新しい組織" />
               <p className="mb-4 text-sm text-muted-foreground">
-                Organizations are used to manage your projects and teams.
+                組織を使うと、プロジェクトやチームをまとめて管理できます。
               </p>
               <NewOrganizationForm
                 onSuccess={(orgId) => {
@@ -167,10 +167,9 @@ export function SetupPage() {
           stepInt === 2 && organization && (
             <div className="flex flex-col gap-10">
               <div>
-                <Header title="Organization Members" />
+                <Header title="組織メンバー" />
                 <p className="mb-4 text-sm text-muted-foreground">
-                  Invite members to your organization to collaborate on
-                  projects. You can always add more members later.
+                  協力したいメンバーを組織に招待しましょう。必要になったら、あとから追加することもできます。
                 </p>
                 <MembersTable orgId={organization.id} />
               </div>
@@ -184,11 +183,9 @@ export function SetupPage() {
           // 3. Create Project
           stepInt === 3 && organization && (
             <div>
-              <Header title="New Project" />
+              <Header title="新しいプロジェクト" />
               <p className="mb-4 text-sm text-muted-foreground">
-                Projects are used to group traces, datasets, evals and prompts.
-                Multiple environments are best separated via tags within a
-                project.
+                プロジェクトではトレース・データセット・評価・プロンプトをまとめて管理します。複数環境がある場合は、同じプロジェクト内でタグを使って区別するのがおすすめです。
               </p>
               <NewProjectForm
                 orgId={organization.id}
@@ -216,7 +213,7 @@ export function SetupPage() {
           data-testid="btn-skip-add-members"
           onClick={() => router.push(createProjectRoute(organization.id))}
         >
-          Next
+          次へ進む
         </Button>
       )}
       {
@@ -227,7 +224,7 @@ export function SetupPage() {
             onClick={() => router.push(`/project/${project.id}`)}
             variant={hasTracingConfigured ? "default" : "secondary"}
           >
-            {hasTracingConfigured ? "Open Dashboard" : "Skip for now"}
+            {hasTracingConfigured ? "ダッシュボードを開く" : "今回はスキップ"}
           </Button>
         )
       }
@@ -264,24 +261,25 @@ const TracingSetup = ({
   return (
     <div className="space-y-8">
       <div>
-        <Header title="API Keys" />
+        <Header title="API キー" />
         <p className="mb-4 text-sm text-muted-foreground">
-          These keys are used to authenticate your API requests. You can create
-          more keys later in the project settings.
+          API
+          リクエストの認証にはこれらのキーを使用します。追加のキーはプロジェクト設定からいつでも発行できます。
         </p>
         {apiKeys ? (
           <ApiKeyRender generatedKeys={apiKeys} scope={"project"} />
         ) : (
           <div className="flex flex-col gap-4">
             <p className="text-sm text-muted-foreground">
-              You need to create an API key to start tracing your application.
+              アプリケーションのトレースを始めるには、API
+              キーを作成する必要があります。
             </p>
             <Button
               onClick={createApiKey}
               loading={mutCreateApiKey.isPending}
               className="self-start"
             >
-              Create API Key
+              API キーを作成
             </Button>
           </div>
         )}
@@ -289,12 +287,12 @@ const TracingSetup = ({
 
       <div>
         <Header
-          title="Setup Tracing"
+          title="トレース設定"
           status={hasTracingConfigured ? "active" : "pending"}
         />
         <p className="mb-4 text-sm text-muted-foreground">
-          Tracing is used to track and analyze your LLM calls. You can always
-          skip this step and setup tracing later.
+          トレースは LLM
+          呼び出しの追跡と分析に利用します。この手順はスキップして、あとから設定することも可能です。
         </p>
         <QuickstartExamples
           secretKey={apiKeys?.secretKey}
