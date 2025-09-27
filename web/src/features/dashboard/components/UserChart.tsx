@@ -114,7 +114,7 @@ export const UserChart = ({
         .filter((item) => item.userId !== undefined)
         .map((item) => {
           return {
-            name: (item.userId as string | null | undefined) ?? "Unknown",
+            name: (item.userId as string | null | undefined) ?? "不明",
             value: item.sum_totalCost ? Number(item.sum_totalCost) : 0,
           };
         })
@@ -137,30 +137,30 @@ export const UserChart = ({
 
   const data = [
     {
-      tabTitle: "Token cost",
+      tabTitle: "トークンコスト",
       data: isExpanded
         ? transformedCost.slice(0, maxNumberOfEntries.expanded)
         : transformedCost.slice(0, maxNumberOfEntries.collapsed),
       totalMetric: totalCostDashboardFormatted(totalCost),
-      metricDescription: "Total cost",
+      metricDescription: "合計コスト",
       formatter: localUsdFormatter,
     },
     {
-      tabTitle: "Count of Traces",
+      tabTitle: "トレース数",
       data: isExpanded
         ? transformedNumberOfTraces.slice(0, maxNumberOfEntries.expanded)
         : transformedNumberOfTraces.slice(0, maxNumberOfEntries.collapsed),
       totalMetric: totalTraces
         ? compactNumberFormatter(totalTraces)
         : compactNumberFormatter(0),
-      metricDescription: "Total traces",
+      metricDescription: "トレース総数",
     },
   ];
 
   return (
     <DashboardCard
       className={className}
-      title="User consumption"
+      title="ユーザー別利用状況"
       isLoading={isLoading || user.isPending}
     >
       <TabComponent
@@ -186,7 +186,7 @@ export const UserChart = ({
                 ) : (
                   <NoDataOrLoading
                     isLoading={isLoading || user.isPending}
-                    description="Consumption per user is tracked by passing their ids on traces."
+                    description="トレースにユーザー ID を含めることで、ユーザーごとの利用量を把握できます。"
                     href="https://langfuse.com/docs/observability/features/users"
                   />
                 )}
@@ -202,8 +202,8 @@ export const UserChart = ({
         maxLength={maxNumberOfEntries.collapsed}
         expandText={
           transformedCost.length > maxNumberOfEntries.expanded
-            ? `Show top ${maxNumberOfEntries.expanded}`
-            : "Show all"
+            ? `上位 ${maxNumberOfEntries.expanded} 件を表示`
+            : "すべて表示"
         }
       />
     </DashboardCard>

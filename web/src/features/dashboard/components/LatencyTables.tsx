@@ -173,12 +173,12 @@ export const LatencyTables = ({
     <>
       <DashboardCard
         className="col-span-1 xl:col-span-2"
-        title="Trace latency percentiles"
+        title="トレースのレイテンシ"
         isLoading={isLoading || tracesLatencies.isPending}
       >
         <DashboardTable
           headers={[
-            "Trace Name",
+            "トレース名",
             <RightAlignedCell key="p50">p50</RightAlignedCell>,
             <RightAlignedCell key="p90">p90</RightAlignedCell>,
             <RightAlignedCell key="p95">
@@ -193,12 +193,12 @@ export const LatencyTables = ({
       </DashboardCard>
       <DashboardCard
         className="col-span-1 xl:col-span-2"
-        title="Generation latency percentiles"
+        title="生成処理のレイテンシ"
         isLoading={isLoading || generationsLatencies.isPending}
       >
         <DashboardTable
           headers={[
-            "Generation Name",
+            "生成ステップ名",
             <RightAlignedCell key="p50">p50</RightAlignedCell>,
             <RightAlignedCell key="p90">p90</RightAlignedCell>,
             <RightAlignedCell key="p95">
@@ -213,12 +213,12 @@ export const LatencyTables = ({
       </DashboardCard>
       <DashboardCard
         className="col-span-1 xl:col-span-2"
-        title="Span latency percentiles"
+        title="スパンのレイテンシ"
         isLoading={isLoading || spansLatencies.isPending}
       >
         <DashboardTable
           headers={[
-            "Span Name",
+            "スパン名",
             <RightAlignedCell key="p50">p50</RightAlignedCell>,
             <RightAlignedCell key="p90">p90</RightAlignedCell>,
             <RightAlignedCell key="p95">

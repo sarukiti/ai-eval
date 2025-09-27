@@ -67,7 +67,7 @@ export const TracesAndObservationsTimeSeriesChart = ({
           ts: new Date(item.time_dimension as any).getTime(),
           values: [
             {
-              label: "Traces",
+              label: "トレース",
               value: Number(item.count_count),
             },
           ],
@@ -141,23 +141,23 @@ export const TracesAndObservationsTimeSeriesChart = ({
 
   const data = [
     {
-      tabTitle: "Traces",
+      tabTitle: "トレース",
       data: transformedTraces,
       totalMetric: total,
-      metricDescription: `Traces tracked`,
+      metricDescription: `記録されたトレース`,
     },
     {
-      tabTitle: "Observations by Level",
+      tabTitle: "レベル別の観測値",
       data: transformedObservations,
       totalMetric: totalObservations,
-      metricDescription: `Observations tracked`,
+      metricDescription: `記録された観測値`,
     },
   ];
 
   return (
     <DashboardCard
       className={className}
-      title="Traces by time"
+      title="時間別トレース"
       isLoading={isLoading || traces.isPending}
       cardContentClassName="flex flex-col content-end "
     >
@@ -186,7 +186,7 @@ export const TracesAndObservationsTimeSeriesChart = ({
                 ) : (
                   <NoDataOrLoading
                     isLoading={isLoading || traces.isPending}
-                    description="Traces contain details about LLM applications and can be created using the SDK."
+                    description="トレースには LLM アプリケーションの詳細が含まれ、SDK から作成できます。"
                     href="https://langfuse.com/docs/observability/overview"
                   />
                 )}

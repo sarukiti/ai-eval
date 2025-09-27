@@ -98,13 +98,13 @@ export const ModelCostTable = ({
   return (
     <DashboardCard
       className={className}
-      title="Model costs"
+      title="モデルコスト"
       isLoading={isLoading || metrics.isLoading}
     >
       <DashboardTable
         headers={[
-          "Model",
-          <RightAlignedCell key="tokens">Tokens</RightAlignedCell>,
+          "モデル",
+          <RightAlignedCell key="tokens">トークン数</RightAlignedCell>,
           <RightAlignedCell key="cost">USD</RightAlignedCell>,
         ]}
         rows={metricsData}
@@ -113,10 +113,10 @@ export const ModelCostTable = ({
       >
         <TotalMetric
           metric={totalCostDashboardFormatted(totalTokenCost)}
-          description="Total cost"
+          description="合計コスト"
         >
           <DocPopup
-            description="Calculated multiplying the number of tokens with cost per token for each model."
+            description="各モデルごとのトークン数に単価を掛け合わせて算出した値です。"
             href="https://langfuse.com/docs/model-usage-and-cost"
           />
         </TotalMetric>

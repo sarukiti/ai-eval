@@ -123,23 +123,23 @@ export const GenerationLatencyChart = ({
 
   const data = [
     {
-      tabTitle: "50th Percentile",
+      tabTitle: "50 パーセンタイル",
       data: getData("p50_latency"),
     },
     {
-      tabTitle: "75th Percentile",
+      tabTitle: "75 パーセンタイル",
       data: getData("p75_latency"),
     },
     {
-      tabTitle: "90th Percentile",
+      tabTitle: "90 パーセンタイル",
       data: getData("p90_latency"),
     },
     {
-      tabTitle: "95th Percentile",
+      tabTitle: "95 パーセンタイル",
       data: getData("p95_latency"),
     },
     {
-      tabTitle: "99th Percentile",
+      tabTitle: "99 パーセンタイル",
       data: getData("p99_latency"),
     },
   ];
@@ -147,8 +147,8 @@ export const GenerationLatencyChart = ({
   return (
     <DashboardCard
       className={className}
-      title="Model latencies"
-      description="Latencies (seconds) per LLM generation"
+      title="モデル別レイテンシ"
+      description="LLM 生成ごとのレイテンシ（秒）"
       isLoading={
         isLoading || (latencies.isPending && selectedModels.length > 0)
       }

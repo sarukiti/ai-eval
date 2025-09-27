@@ -62,8 +62,8 @@ export function ScoreAnalytics(props: {
   return (
     <DashboardCard
       className={props.className}
-      title="Scores Analytics"
-      description="Aggregate scores and averages over time"
+      title="スコア分析"
+      description="スコアの集計と平均推移"
       isLoading={props.isLoading || scoreKeysAndProps.isPending}
       headerClassName={"grid grid-cols-[1fr,auto,auto] items-center"}
       headerChildren={
@@ -71,7 +71,7 @@ export function ScoreAnalytics(props: {
         !props.isLoading &&
         Boolean(scoreKeysAndProps.data?.scoreColumns.length) && (
           <MultiSelectKeyValues
-            placeholder="Search score..."
+            placeholder="スコアを検索..."
             onValueChange={(values, changedValueId, selectedValueKeys) => {
               if (values.length === 0) setSelectedDashboardScoreKeys([]);
 
@@ -111,9 +111,9 @@ export function ScoreAnalytics(props: {
                   {/* aggregate */}
                   <div>
                     <div className="mb-2 text-sm text-muted-foreground">
-                      Total aggregate scores
+                      スコアの合計
                       {isNumericDataType(dataType) && (
-                        <DocPopup description="Aggregate of up to 10,000 scores" />
+                        <DocPopup description="最大 10,000 件のスコアを集計した値です。" />
                       )}
                     </div>
                     {isCategoricalDataType(dataType) && (
@@ -140,8 +140,8 @@ export function ScoreAnalytics(props: {
                   <div>
                     <div className="mb-2 text-sm text-muted-foreground">
                       {isNumericDataType(dataType)
-                        ? "Moving average over time"
-                        : "Scores over time"}
+                        ? "時間ごとの移動平均"
+                        : "スコアの推移"}
                     </div>
                     {isCategoricalDataType(dataType) && (
                       <CategoricalScoreChart
@@ -178,7 +178,7 @@ export function ScoreAnalytics(props: {
       ) : Boolean(scoreKeysAndProps.data?.scoreColumns.length) ? (
         <div className="flex min-h-[9rem] w-full flex-1 items-center justify-center rounded-tremor-default border">
           <p className="text-tremor-content">
-            Select a score to view analytics
+            分析するスコアを選択してください
           </p>
         </div>
       ) : (
