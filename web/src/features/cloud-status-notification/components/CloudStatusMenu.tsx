@@ -26,7 +26,7 @@ export function CloudStatusMenu() {
   }
 
   return (
-    <SidebarMenuButton asChild tooltip="Status">
+    <SidebarMenuButton asChild tooltip="ステータス">
       <Link
         href="https://status.langfuse.com"
         target="_blank"
@@ -44,7 +44,7 @@ export function CloudStatusMenu() {
             )}
           ></span>
         </div>
-        Status
+        ステータス
       </Link>
     </SidebarMenuButton>
   );

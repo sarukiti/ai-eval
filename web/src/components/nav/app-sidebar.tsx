@@ -104,7 +104,7 @@ const DemoBadge = () => {
                 rel="noopener noreferrer"
               >
                 <ExternalLink className="h-4 w-4" />
-                <span>Use Demo App</span>
+                <span>デモアプリを使う</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -112,7 +112,7 @@ const DemoBadge = () => {
             <SidebarMenuButton asChild tooltip="Your Langfuse Organizations">
               <Link href="/">
                 <Grid2X2 className="h-4 w-4" />
-                <span>Your Langfuse Orgs</span>
+                <span>Langfuse 組織</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

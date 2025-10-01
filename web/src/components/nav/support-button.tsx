@@ -19,7 +19,7 @@ export const SupportButton = () => {
       }}
     >
       <LifeBuoy className="h-4 w-4" />
-      Support
+      サポート
     </SidebarMenuButton>
   );
 };
